@@ -1,0 +1,27 @@
+{
+  "name": "sitetemplate",
+  "description": "Site template",
+  "main": "gulpfile.js",
+  "authors": [
+    "Andrey Skrypai"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "Psd",
+    "Site",
+    "tempalte"
+  ],
+  "homepage": "https://github.com/drakosha114/SiteTemplate",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "libs/",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "2.*",
+    "normalize-scss": "^3.0.3"
+  }
+}

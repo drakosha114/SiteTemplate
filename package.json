@@ -1,0 +1,36 @@
+{
+  "name": "sitetemplate",
+  "version": "1.0.0",
+  "description": "Site template",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drakosha114/SiteTemplate.git"
+  },
+  "keywords": [
+    "Psd",
+    "Site",
+    "tempalte"
+  ],
+  "author": "Andrey Skrypai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drakosha114/SiteTemplate/issues"
+  },
+  "homepage": "https://github.com/drakosha114/SiteTemplate#readme",
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-filter": "^4.0.0",
+    "gulp-imagemin": "^3.0.2",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-sass": "^2.3.2",
+    "gulp-watch": "^4.3.8",
+    "main-bower-files": "^2.13.1",
+    "uglify": "^0.1.5"
+  }
+}
