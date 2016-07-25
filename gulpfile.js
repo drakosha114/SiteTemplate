@@ -6,7 +6,7 @@ var gulpFilter;
 var MainBowerFiles;
 var concat;
 var uglify;
-
+var bower;
 
 gulp = require("gulp");
 gulpFilter = require('gulp-filter');
@@ -15,7 +15,7 @@ concat = require("gulp-concat");
 uglify = require("gulp-uglifyjs");
 sass = require("gulp-sass");
 minCss = require("gulp-minify-css");
-
+bower = require("gulp-bower");
 
 
 
@@ -27,7 +27,6 @@ gulp.task('compBowerJs',function(){
         .pipe(concat('externalJsLibs.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('app/js/'));
-
 });
 
 gulp.task('compBowerFonts', function(){
@@ -36,18 +35,37 @@ gulp.task('compBowerFonts', function(){
         .pipe(gulp.dest('app/fonts/'))
 
 });
-gulp.task('compBowerCss', function(){
+
+gulp.task('compBowerSassCss', function(){
+
+    var sassFilter;
+    var cssFilter;
+
+    sassFilter = gulpFilter(['**/*.scss'], {restore: true});
+    cssFilter = gulpFilter(['**/*.css'], {restore: true});
+
     return gulp.src(MainBowerFiles({
         "includeDev": true
     }))
-        .pipe(gulpFilter(['**/*.scss'], {restore: true}))
+        .pipe(sassFilter)
         .pipe(sass())
         .pipe(concat('externalCssLibs.min.css'))
+        //.pipe(sassFilter.restore())
+        .pipe(cssFilter)
+        .pipe(concat('externalCssLibs.min.css'))
         .pipe(minCss())
-        .pipe(gulp.dest('app/css/'))
+        .pipe(gulp.dest('app/css/'));
 });
 
-gulp.task('compileBowerLibs', ['compBowerJs', 'compBowerCss', 'compBowerFonts']);
+gulp.task('copyBowerSass', function(){
+    return gulp.src(MainBowerFiles({
+        "includeDev": true
+    }))
+        .pipe(gulpFilter(['**/*.scss!font-awesome.scss'], {restore: true}))
+        .pipe(gulp.dest('app/sass/vendors'));
+});
+
+gulp.task('compileBowerLibs', ['compBowerJs', 'compBowerSassCss', 'copyBowerSass' ,'compBowerFonts']);
 
 
 gulp.task('compileSass', ['compileBowerLibs'], function(){
